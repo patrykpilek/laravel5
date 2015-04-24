@@ -5,8 +5,6 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Http\Requests\CreateArticleRequest;
-use Carbon\Carbon;
-use Request;
 
 class ArticlesController extends Controller {
 
@@ -18,7 +16,6 @@ class ArticlesController extends Controller {
 	public function index()
 	{
         $articles = Article::latest('published_at')->published()->get();
-
         return view('articles.index',compact('articles'));
 	}
 
@@ -32,14 +29,15 @@ class ArticlesController extends Controller {
 		return view('articles.create');
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param CreateArticleRequest $request
+     * @return Response
+     */
 	public function store(CreateArticleRequest $request)
 	{
-        Article::create($request::all());
+        Article::create($request->all());
         return redirect('articles');
 	}
 
@@ -51,6 +49,7 @@ class ArticlesController extends Controller {
 	 */
 	public function show($id)
 	{
+//        dd('show');
 //        $article = Article::find($id);
         $article = Article::findOrFail($id);
 

@@ -3,8 +3,8 @@
 use App\Article;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ArticleRequest;
 
-use App\Http\Requests\CreateArticleRequest;
 
 class ArticlesController extends Controller {
 
@@ -32,10 +32,10 @@ class ArticlesController extends Controller {
     /**
      * Store a newly created resource in storage.
      *
-     * @param CreateArticleRequest $request
+     * @param ArticleRequest $request
      * @return Response
      */
-	public function store(CreateArticleRequest $request)
+	public function store(ArticleRequest $request)
 	{
         Article::create($request->all());
         return redirect('articles');
@@ -71,18 +71,22 @@ class ArticlesController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+        $article = Article::findOrFail($id);
+		return view('articles.edit', compact('article'));
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int $id
+     * @param ArticleRequest $request
+     * @return Response
+     */
+	public function update($id, ArticleRequest $request)
 	{
-		//
+        $article = Article::findOrFail($id);
+        $article->update($request->all());
+        return redirect('articles');
 	}
 
 	/**

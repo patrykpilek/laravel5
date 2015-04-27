@@ -2,20 +2,28 @@ var elixir = require('laravel-elixir');
 
 var bowerDir = './resources/assets/vendor/';
 
-var lessPaths = [
-    bowerDir + "bootstrap/less",
-    bowerDir + "font-awesome/less",
-    bowerDir + "bootstrap-select/less"
-];
+var paths = {
+    'jquery': bowerDir + 'jquery/',
+    'bootstrap': bowerDir + 'bootstrap-sass-official/assets/',
+    'fontawesome': bowerDir + 'font-awesome/',
+    'bootstrapselect': bowerDir + 'bootstrap-select-sass/'
+};
 
 elixir(function(mix) {
-    mix.less('app.less', 'public/css', { paths: lessPaths })
+    mix.sass('app.scss', 'public/css/', {
+        includePaths: [
+            paths.bootstrap + 'stylesheets',
+            paths.fontawesome + 'scss',
+            paths.bootstrapselect + 'sass',
+            'vendor/normalize.css'
+        ]
+    })
         .scripts([
-            'jquery/dist/jquery.min.js',
-            'bootstrap/dist/js/bootstrap.min.js',
-            'bootstrap-select/dist/js/bootstrap-select.min.js'
+            paths.jquery + 'dist/jquery.min.js',
+            paths.bootstrap + 'javascripts/bootstrap.min.js',
+            paths.bootstrapselect + 'dist/js/bootstrap-select.min.js'
         ], 'public/js/vendor.js', bowerDir)
         .copy('resources/assets/js/app.js', 'public/js/app.js')
-        .copy(bowerDir + 'font-awesome/fonts', 'public/fonts');
+        .copy(paths.fontawesome + 'fonts', 'public/fonts');
 
 });

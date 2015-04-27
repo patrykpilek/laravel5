@@ -13,8 +13,7 @@ class Article extends Model {
 	protected $fillable = [
         'title',
         'body',
-        'published_at',
-        'user_id'       // Temporary
+        'published_at'
     ];
 
     /**

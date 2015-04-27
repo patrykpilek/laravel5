@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class ArticlesController extends Controller {
 
     public function __construct(){
-        $this->middleware('auth', ['except' => 'index']);
+        $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
 	/**
@@ -48,17 +48,17 @@ class ArticlesController extends Controller {
         return redirect('articles');
 	}
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
+    /**
+     * Display the specified resource.
+     *
+     * @param Article $article
+     * @return Response
+     */
+	public function show(Article $article)
 	{
 //        dd('show');
 //        $article = Article::find($id);
-        $article = Article::findOrFail($id);
+//        $article = Article::findOrFail($id);
 
 //        dd($article->created_at->addDays(8)->diffForHumans());
 //        dd($article->published_at);
@@ -70,28 +70,28 @@ class ArticlesController extends Controller {
         return view('articles.show', compact('article'));
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param Article $article
+     * @return Response
+     */
+	public function edit(Article $article)
 	{
-        $article = Article::findOrFail($id);
+//        $article = Article::findOrFail($id);
 		return view('articles.edit', compact('article'));
 	}
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  int $id
+     * @param Article $article
      * @param ArticleRequest $request
      * @return Response
      */
-	public function update($id, ArticleRequest $request)
+	public function update(Article $article, ArticleRequest $request)
 	{
-        $article = Article::findOrFail($id);
+//        $article = Article::findOrFail($id);
         $article->update($request->all());
         return redirect('articles');
 	}

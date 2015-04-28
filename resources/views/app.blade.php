@@ -18,6 +18,9 @@
 <body>
 
     <div class="container">
+        
+        @include('flash::message')
+        
         @yield('content')
     </div>
 
@@ -25,6 +28,10 @@
 
 	<!-- Scripts -->
 	<script src="{{ asset('/js/vendor.js') }}"></script>
+
+    <script>
+        $('div.alert').not('.alert-important').delay(3000).slideUp(300);
+    </script>
 
 </body>
 </html>

@@ -6,7 +6,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Laravel5</title>
 
-	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/css/all.css">
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -24,10 +25,9 @@
         @yield('content')
     </div>
 
-    @yield('footer')
+    <script src="/js/all.js"></script>
 
-	<!-- Scripts -->
-	<script src="{{ asset('/js/vendor.js') }}"></script>
+    @yield('footer')
 
     <script>
         $('div.alert').not('.alert-important').delay(3000).slideUp(300);

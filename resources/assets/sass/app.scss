@@ -1,2 +1,8 @@
-@import "font-awesome";
-@import "bootstrap";
+$font-stack:    Helvetica, sans-serif;
+$primary-color: #333;
+$body-color: yellow;
+
+body {
+  font: 100% $font-stack;
+  color: $primary-color;
+}

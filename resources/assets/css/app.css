@@ -1,5 +1,9 @@
 body {
+  padding-top: 60px;
   font: 100% Helvetica, sans-serif;
   color: #333; }
+
+body, label, .checkbox label {
+  font-weight: 300; }
 
 /*# sourceMappingURL=app.css.map */

@@ -1,8 +1,12 @@
 $font-stack:    Helvetica, sans-serif;
 $primary-color: #333;
-$body-color: yellow;
 
 body {
+  padding-top: 60px;
   font: 100% $font-stack;
   color: $primary-color;
+}
+
+body, label, .checkbox label {
+  font-weight: 300;
 }
